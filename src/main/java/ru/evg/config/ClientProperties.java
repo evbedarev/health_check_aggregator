@@ -7,13 +7,15 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.List;
 
-@Setter
-@Getter
 @ConfigurationProperties(prefix = "client")
 public class ClientProperties {
 
+    @Setter
+    @Getter
     private long checkTimeout;
 
+    @Setter
+    @Getter
     private List<String> urls;
 
 }

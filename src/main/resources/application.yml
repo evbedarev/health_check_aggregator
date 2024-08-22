@@ -10,8 +10,9 @@ management:
         include: health, info
 
 client:
-  checkTimeout: 50000
+  checkTimeout: 1000
   urls:
-    - "http://localhost:8085/actuator/health"
+    - "http://localhost:9000/actuator/health"
+    - "http://localhost:9002/actuator/health"
     #- "http://localhost:8088/api/v1/authors"
 

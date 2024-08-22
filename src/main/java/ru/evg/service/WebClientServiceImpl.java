@@ -1,11 +1,11 @@
 package ru.evg.service;
 
-import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClientRequestException;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 import ru.evg.config.ClientProperties;
 import ru.evg.dto.HealthDto;
 import ru.evg.dto.HealthErrorDto;
@@ -35,7 +35,7 @@ public class WebClientServiceImpl implements HealthCheckAggr {
     private Optional<HealthDto> checkHealthCheck(WebClient webClient) {
         try {
             return Optional.ofNullable(webClient.get().retrieve().bodyToMono(HealthDto.class).block());
-        } catch (WebClientRequestException exception) {
+        } catch (WebClientRequestException | WebClientResponseException exception) {
             System.out.println(exception.getMessage());
             return Optional.of(new HealthDto("ERROR"));
         }
